@@ -1,55 +1,33 @@
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
+// Local storage utilities for personal app (no authentication)
+export const getStoredUser = () => {
+  if (typeof window !== "undefined") {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored) : null;
+  }
+  return null;
+};
 
-// Mock database - in production, this would be replaced with Prisma queries
-const mockUsers: Array<{
-  id: string;
-  email: string;
-  name: string;
-  hashedPassword: string;
-}> = [];
+export const setStoredUser = (userData: object) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("user", JSON.stringify(userData));
+  }
+};
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [
-    Credentials({
-      name: "credentials",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+export const clearStoredUser = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("user");
+  }
+};
 
-        const user = mockUsers.find((u) => u.email === credentials.email);
-
-        if (!user) {
-          return null;
-        }
-
-        const isValidPassword = await bcrypt.compare(
-          credentials.password as string,
-          user.hashedPassword
-        );
-
-        if (!isValidPassword) {
-          return null;
-        }
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-        };
-      },
-    }),
-  ],
-  pages: {
-    signIn: "/auth/signin",
-  },
-  session: {
-    strategy: "jwt",
+// Default user data for personal app
+export const getDefaultUser = () => ({
+  id: "personal-user",
+  name: "Personal User",
+  email: "user@personal.app",
+  currentWeek: 1,
+  completedWeeks: [],
+  preferences: {
+    notifications: true,
+    theme: "light",
   },
 });

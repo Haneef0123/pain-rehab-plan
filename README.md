@@ -157,20 +157,36 @@ npm run type-check
 
 ## 📦 Deployment Options
 
-### Static Hosting (Recommended for personal use)
+### Netlify (Recommended)
 
-1. Run `npm run build`
-2. Upload the `out` folder to any static hosting service:
-   - Vercel
-   - Netlify
-   - GitHub Pages
-   - Your own web server
+This app is configured for easy deployment to Netlify:
 
-### Platform Deployment
+1. **Connect your repository** to Netlify
+2. **Build settings** are automatically configured via `netlify.toml`:
 
-- **Vercel**: Connect your repository for automatic deployments
-- **Netlify**: Drag and drop the `out` folder
-- **Local Network**: Run `npm start` and access from other devices on your network
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - Node version: 18.17.0
+
+3. **Deploy** - Netlify will automatically build and deploy your app
+
+### Other Static Hosting Platforms
+
+Since this app exports to static files, you can deploy it to any static hosting service:
+
+- **Vercel**: Connect your repo and deploy (will auto-detect Next.js)
+- **GitHub Pages**: Build locally and push the `dist/` folder to a `gh-pages` branch
+- **Firebase Hosting**: Use `firebase deploy` after building
+- **AWS S3**: Upload the `dist/` folder contents to an S3 bucket
+
+### Local Testing
+
+To test the production build locally:
+
+```bash
+npm run build
+npx serve dist
+```
 
 ## 🎯 Program Overview
 
