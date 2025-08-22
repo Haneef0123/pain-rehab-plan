@@ -15,7 +15,7 @@
 - [ ] Verify build settings (automatically configured via netlify.toml):
   - Build command: `npm run build`
   - Publish directory: `dist`
-  - Node version: 18.17.0
+  - Node version: 20.17.0
 - [ ] Deploy and test the live site
 
 ## Post-deployment Testing
@@ -38,7 +38,7 @@
 
 2. **Build failures**:
 
-   - Check Node version is set to 18 in netlify.toml
+   - Check Node version is set to 20.17.0 in netlify.toml
    - Clear Netlify's build cache and redeploy
    - Ensure all dependencies are in package.json
 
@@ -49,14 +49,14 @@
 
 If deployment fails:
 
-1. **Check Node version**: Ensure Netlify is using Node 18.17.0 or higher
+1. **Check Node version**: Ensure Netlify is using Node 20.17.0
 2. **Clear cache**: Clear Netlify's build cache and redeploy
 3. **Check build logs**: Look for specific error messages in Netlify's build logs
 4. **Test locally**: Ensure `npm run build` works locally first
 
 ## Configuration Files
 
-- `.nvmrc` - Specifies Node version for Netlify
+- `.nvmrc` - Specifies Node version 20.17.0 for Netlify
 - `netlify.toml` - Netlify build configuration
 - `next.config.ts` - Next.js configuration for static export
 - `tailwind.config.ts` - Tailwind CSS configuration
