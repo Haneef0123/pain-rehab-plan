@@ -28,6 +28,25 @@
 
 ## Troubleshooting
 
+### Common Netlify Issues:
+
+1. **"next: not found" error**:
+
+   - Disable Netlify's Next.js plugin in the Netlify dashboard
+   - Go to Site Settings > Build & Deploy > Plugins and disable "@netlify/plugin-nextjs"
+   - Our app uses static export, not server-side rendering
+
+2. **Build failures**:
+
+   - Check Node version is set to 20 in netlify.toml
+   - Clear Netlify's build cache and redeploy
+   - Ensure all dependencies are in package.json
+
+3. **Manual Plugin Disable**:
+   - In Netlify dashboard: Site Settings > Build & Deploy > Plugins
+   - Find "@netlify/plugin-nextjs" and click "Disable"
+   - This prevents conflicts with our static export configuration
+
 If deployment fails:
 
 1. **Check Node version**: Ensure Netlify is using Node 18.17.0 or higher
