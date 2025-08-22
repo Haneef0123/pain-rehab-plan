@@ -38,7 +38,7 @@
 
 2. **Build failures**:
 
-   - Check Node version is set to 20 in netlify.toml
+   - Check Node version is set to 18 in netlify.toml
    - Clear Netlify's build cache and redeploy
    - Ensure all dependencies are in package.json
 
