@@ -1,7 +1,4 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   HomeIcon,
@@ -26,7 +23,7 @@ const navigationItems = [
 ];
 
 export function Navigation() {
-  const pathname = usePathname();
+  const location = useLocation();
   const [currentWeek, setCurrentWeek] = useState(1);
 
   useEffect(() => {
@@ -57,11 +54,11 @@ export function Navigation() {
 
         <ul className="space-y-2">
           {navigationItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = location.pathname === item.href;
             return (
               <li key={item.name}>
                 <Link
-                  href={item.href}
+                  to={item.href}
                   className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-blue-100 text-blue-700"
@@ -85,7 +82,7 @@ export function Navigation() {
             Stop if severe pain, numbness, or weakness occurs
           </p>
           <Link
-            href="/red-flags"
+            to="/red-flags"
             className="text-xs text-red-600 underline mt-1 block"
           >
             View Red Flags →
